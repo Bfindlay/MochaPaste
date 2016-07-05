@@ -1,20 +1,25 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
 @(message: String)
+@import helper._
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>@message</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/foundation.min.css")">
+    </head>
+    <body>
+        <div class="row">
+            <div class="large-12 columns">
+                <h1> @message this is a PasteBin! </h1>
+                
+                @form(action = routes.Application.uploadPaste()) {
+                    <input type="text" name="paste" id="paste"/>
+                        <input type="submit"/>
+                }
+            </div>
+        </div>
+    </body>
+</html>
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @play20.welcome(message, style = "Java")
 
-}
